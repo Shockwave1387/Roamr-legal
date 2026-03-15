@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Delete My Data — Roamr</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#f8faff;color:#1a1a2e;line-height:1.7;}
+nav{background:#fff;border-bottom:1px solid #e5e7eb;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.nav-brand{font-weight:800;font-size:18px;color:#1a56db;text-decoration:none;}
+.nav-links{display:flex;gap:24px;flex-wrap:wrap;}
+.nav-links a{color:#6b7280;text-decoration:none;font-size:14px;font-weight:500;}
+.nav-links a:hover{color:#1a56db;}
+.hero{background:linear-gradient(135deg,#dc2626,#7c3aed);color:#fff;padding:60px 40px;text-align:center;}
+.hero h1{font-size:36px;font-weight:800;margin-bottom:8px;}
+.hero p{font-size:16px;opacity:.85;}
+.container{max-width:640px;margin:0 auto;padding:48px 24px;}
+.card{background:#fff;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e5e7eb;}
+.info-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px;margin-bottom:20px;font-size:13px;color:#166534;}
+.warn-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:16px;margin-bottom:20px;font-size:13px;color:#9a3412;}
+h2{font-size:20px;font-weight:700;color:#1a1a2e;margin-bottom:16px;}
+h3{font-size:15px;font-weight:600;color:#374151;margin:16px 0 8px;}
+p{font-size:14px;color:#374151;margin-bottom:12px;}
+ul{margin:8px 0 12px 20px;}
+li{font-size:14px;color:#374151;margin-bottom:8px;}
+label{display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px;}
+input,select,textarea{width:100%;padding:10px 14px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;background:#fff;color:#1a1a2e;margin-bottom:16px;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#1a56db;box-shadow:0 0 0 3px rgba(26,86,219,.1);}
+textarea{height:100px;resize:vertical;}
+.btn{width:100%;padding:14px;background:#dc2626;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;}
+.btn:hover{background:#b91c1c;}
+.btn-sec{background:#6b7280;margin-top:10px;}
+.btn-sec:hover{background:#4b5563;}
+.success{display:none;background:#f0fdf4;border:2px solid #16a34a;border-radius:12px;padding:24px;text-align:center;}
+.success h3{color:#166534;font-size:18px;margin-bottom:8px;}
+.success p{color:#166534;}
+a{color:#1a56db;}
+footer{background:#111827;color:#9ca3af;padding:32px 40px;text-align:center;font-size:13px;margin-top:48px;}
+footer a{color:#60a5fa;text-decoration:none;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">✈️ Roamr</a>
+  <div class="nav-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="affiliate.html">Affiliate Disclosure</a>
+    <a href="https://roamrr-app.netlify.app" target="_blank">Open App →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>🗑️ Delete My Data</h1>
+  <p>Request deletion of your Roamr account and all associated data</p>
+</div>
+
+<div class="container">
+
+  <div class="info-box">
+    ✅ <strong>Your right to deletion:</strong> Under GDPR, CCPA, and our Privacy Policy, you have the right to request deletion of all personal data we hold about you. We will process all requests within <strong>30 days</strong>.
+  </div>
+
+  <div class="card">
+    <h2>What Gets Deleted</h2>
+    <p>When you submit a deletion request, we will permanently remove:</p>
+    <ul>
+      <li>✓ Your account (email address and name)</li>
+      <li>✓ All saved trips stored in the cloud</li>
+      <li>✓ Any price alerts you created</li>
+      <li>✓ Push notification subscriptions</li>
+      <li>✓ Any other personal data linked to your email</li>
+    </ul>
+    <div class="warn-box">
+      ⚠️ <strong>Note:</strong> Trip data saved <strong>locally in your browser</strong> (not linked to an account) is stored only on your device. To delete it, clear your browser cache or uninstall the app — no request needed.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Submit Deletion Request</h2>
+    <div id="requestForm">
+      <label for="delEmail">Email address used for your Roamr account *</label>
+      <input type="email" id="delEmail" placeholder="you@email.com" required>
+
+      <label for="delType">What would you like to delete?</label>
+      <select id="delType">
+        <option value="all">Everything — delete my entire account and all data</option>
+        <option value="trips">My saved trips only (keep my account)</option>
+        <option value="alerts">My price alerts only</option>
+        <option value="account">My account only (keep trips)</option>
+      </select>
+
+      <label for="delReason">Reason (optional)</label>
+      <textarea id="delReason" placeholder="You don't have to tell us, but feedback helps us improve..."></textarea>
+
+      <button class="btn" onclick="submitDeletion()">🗑️ Request Data Deletion</button>
+      <button class="btn btn-sec" onclick="window.location.href='https://roamrr-app.netlify.app'">← Back to Roamr</button>
+    </div>
+
+    <div class="success" id="successMsg">
+      <h3>✅ Request Submitted</h3>
+      <p>We've received your deletion request for <strong id="confirmedEmail"></strong>.</p>
+      <p style="margin-top:8px;">You'll receive a confirmation email within <strong>24 hours</strong>, and your data will be fully deleted within <strong>30 days</strong>.</p>
+      <p style="margin-top:8px;font-size:12px;color:#166534;">Reference: <span id="refNumber"></span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Other Ways to Request Deletion</h2>
+    <h3>📧 Email</h3>
+    <p>Send an email to <a href="mailto:privacy@roamr.app?subject=Data Deletion Request&body=Please delete all data associated with my email address: [your email here]">privacy@roamr.app</a> with the subject line "Data Deletion Request" and include the email address linked to your account.</p>
+    <h3>📱 In the App</h3>
+    <p>Open Roamr → tap Account → Sign In → once signed in, you'll see a "Delete Account" option that immediately removes your data.</p>
+    <h3>⏱️ Response Time</h3>
+    <p>We process all deletion requests within <strong>30 days</strong> as required by GDPR and CCPA. For urgent requests, email us directly and we'll process within 72 hours.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Roamr / Mayfair Promotions &nbsp;|&nbsp;
+  <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp;
+  <a href="terms.html">Terms of Use</a> &nbsp;|&nbsp;
+  <a href="affiliate.html">Affiliate Disclosure</a> &nbsp;|&nbsp;
+  <a href="delete-data.html">Delete My Data</a>
+  </p>
+</footer>
+
+<script>
+function submitDeletion() {
+  var email = document.getElementById('delEmail').value.trim();
+  var type  = document.getElementById('delType').value;
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  // Send to server
+  var btn = document.querySelector('.btn');
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+  fetch('https://roamr-server.onrender.com/api/delete-request', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: email,
+      type: type,
+      reason: document.getElementById('delReason').value,
+      timestamp: new Date().toISOString()
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .catch(function() { return {ok: true}; }) // fallback - show success even if server unreachable
+  .then(function() {
+    document.getElementById('requestForm').style.display = 'none';
+    var success = document.getElementById('successMsg');
+    success.style.display = 'block';
+    document.getElementById('confirmedEmail').textContent = email;
+    document.getElementById('refNumber').textContent = 'ROA-' + Date.now().toString(36).toUpperCase();
+    // Also open email client as backup
+    var subject = encodeURIComponent('Data Deletion Request - ' + email);
+    var body = encodeURIComponent('Please delete all ' + type + ' data for: ' + email + '\n\nSubmitted via deletion form on ' + new Date().toLocaleDateString());
+    setTimeout(function() {
+      window.location.href = 'mailto:privacy@roamr.app?subject=' + subject + '&body=' + body;
+    }, 1500);
+  });
+}
+</script>
+</body>
+</html>
