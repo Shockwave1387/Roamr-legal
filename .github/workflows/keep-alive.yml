@@ -1,0 +1,15 @@
+name: Keep Server Awake
+
+on:
+  schedule:
+    # Runs every 14 minutes to prevent a 15-minute sleep cycle
+    - cron: '*/14 * * * *'
+  workflow_dispatch: # Allows you to trigger the ping manually from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the server
+        # The -s flag makes curl silent, > /dev/null hides the output
+        run: curl -s https://roamr-app.netlify.app> /dev/null
